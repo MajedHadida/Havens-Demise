@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BoxBehaviour : MonoBehaviour
 {
-    public int health = 50;
+    public int health = 2;
     SpriteRenderer renderer;
 
     // Start is called before the first frame update

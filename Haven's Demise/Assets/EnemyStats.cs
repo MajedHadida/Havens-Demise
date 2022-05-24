@@ -6,7 +6,7 @@ using Pathfinding;
 public class EnemyStats : MonoBehaviour
 {
 
-    public int health = 100;
+    public int health = 4;
     private AIDestinationSetter movement;
 
     // Start is called before the first frame update

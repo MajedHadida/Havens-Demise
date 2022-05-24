@@ -10,9 +10,9 @@ public class Attack : MonoBehaviour
     public GameObject weaponPrefab; // references the weapon prefab
     public GameObject character;
     public GameObject enemy;
+    public GameObject breakableObj;
     public AnimationClip swingAction;
 
-    public float weaponForce = 20f;
     public int attackDamage = 1;
     int cooldown = 0;
     float lastHitTime = 0;
@@ -32,7 +32,7 @@ public class Attack : MonoBehaviour
             weaponPrefab.GetComponent<Renderer>().enabled = true;
             weaponPrefab.GetComponent<BoxCollider2D>().enabled = true;
             //Cooldown of attack
-            cooldown = 1500;
+            cooldown = 500;
         }
         if (Time.time - lastHitTime >= swingAction.length)
         {
@@ -48,12 +48,11 @@ public class Attack : MonoBehaviour
     public void damageEnemy(int damage)
     {
         enemy.GetComponent<EnemyStats>().TakeDamage(damage);
-        Debug.Log("You damaged the enemy!");
     }
 
     public void damageBox(int damage)
     {
-        Debug.Log("You damaged a box!");
+        breakableObj.GetComponent<BoxBehaviour>().TakeDamage(damage);
     }
 
 

@@ -6,7 +6,7 @@ public class Weapon : MonoBehaviour
 {
     public GameObject character;
         // function that is called on collision
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         switch (col.gameObject.name)
         {
