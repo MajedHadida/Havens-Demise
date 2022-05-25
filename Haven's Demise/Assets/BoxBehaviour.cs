@@ -28,10 +28,7 @@ public class BoxBehaviour : MonoBehaviour
     void Die()
     {
         Debug.Log("Box broken");
-        renderer = GetComponent<SpriteRenderer>();
-        renderer.color = Color.blue;
-        GetComponent<Collider2D>().enabled = false;
-        this.enabled = false;
+        Destroy(gameObject);
 
     }
 }

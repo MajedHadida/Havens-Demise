@@ -9,6 +9,7 @@ public class Interact : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("interacted with the door!");
+            
         }
     }
 }
