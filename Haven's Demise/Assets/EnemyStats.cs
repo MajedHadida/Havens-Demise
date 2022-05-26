@@ -5,7 +5,8 @@ using Pathfinding;
 
 public class EnemyStats : MonoBehaviour
 {
-
+    public Rigidbody2D rb;
+    public GameObject player;
     public int health = 4;
     private AIDestinationSetter movement;
 
@@ -18,6 +19,11 @@ public class EnemyStats : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        rb.isKinematic = false;
+        Vector2 difference = transform.position - player.transform.position;
+        difference = difference.normalized * 5;
+        rb.AddForce(difference, ForceMode2D.Impulse);
+        rb.isKinematic = true;
 
         //play hurt animation/sound
 
