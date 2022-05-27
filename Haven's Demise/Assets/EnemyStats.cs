@@ -19,11 +19,8 @@ public class EnemyStats : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        rb.isKinematic = false;
-        Vector2 difference = transform.position - player.transform.position;
-        difference = difference.normalized * 5;
-        rb.AddForce(difference, ForceMode2D.Impulse);
-        rb.isKinematic = true;
+        StartCoroutine(Knockback(100, 1, player.transform));
+        Debug.Log("Hello");
 
         //play hurt animation/sound
 
@@ -45,5 +42,18 @@ public class EnemyStats : MonoBehaviour
         movement.enabled = false;
         //Disables "EnemyStats" script
         this.enabled = false;
+    }
+
+    public IEnumerator Knockback(float knockbackDuration, float knockbackPower, Transform obj)
+    {
+        float timer = 0;
+
+        while (knockbackDuration > timer)
+        {
+            timer += Time.deltaTime;
+            Vector2 direction = (this.transform.position - obj.transform.position).normalized;
+            rb.AddForce(direction * knockbackPower);
+        }
+        yield return 0;
     }
 }

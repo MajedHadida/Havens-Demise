@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isDead = false;
     public float moveSpeed = 5f;
     public Rigidbody2D rb; // Makes a rigidbody2D so we can link it to this file
+    public GameObject enemyObj;
     Vector2 movement; // Vector2 stores both x and y
     Vector2 mousePos; // position of mouse
     public Camera cam; //we need to reference the camera so we can find mouse location
@@ -48,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         if (col.gameObject.name == enemy)
         {
             healthScript.reduceHealth(1);
+            StartCoroutine(Knockback(100, 1, enemyObj.transform));
         }
     }
 
@@ -61,7 +63,18 @@ public class PlayerMovement : MonoBehaviour
         return isDead;
     }
 
+    public IEnumerator Knockback(float knockbackDuration, float knockbackPower, Transform obj)
+    {
+        float timer = 0;
 
+        while (knockbackDuration > timer)
+        {
+            timer += Time.deltaTime;
+            Vector2 direction = (this.transform.position - obj.transform.position).normalized;
+            rb.AddForce(direction * knockbackPower);
+        }
+        yield return 0;
+    }
 
 
 }
